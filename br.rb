@@ -72,10 +72,10 @@ def forward_to_normal_git_branch!(argv)
   $stderr.puts stdout_or_stderr
 end
 
-if (ARGV - ["--remote"]).empty?
-  local_or_remote = ARGV.include?("--remote") ? :remote : :local
+if (ARGV - ["--remote", "-r"]).empty?
+  is_remote = ARGV.include?("--remote") || ARGV.include?("-r")
 
-  NumberedGitBranch.new(local_or_remote).perform
+  NumberedGitBranch.new(is_remote ? :remote : :local).perform
 else
   forward_to_normal_git_branch!(ARGV)
 end
