@@ -52,7 +52,7 @@ class NumberedGitBranch
   end
 
   def remote_branches
-    get_branch_names(%r[^refs/remotes/])
+    get_branch_names(%r[^refs/remotes/[^/]*/])
   end
 
   def get_branch_names(prefix)
